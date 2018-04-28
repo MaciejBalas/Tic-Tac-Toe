@@ -39,6 +39,27 @@ public class Board {
         return 'n';
     }
     
+    
+    public int playerMove(String coords,char player){
+        if(coords.length()>2)
+            return -1;
+
+        if(player!='x' && player!='o')
+            return -2;
+        
+        if(coords.charAt(0)>'C' || coords.charAt(0)<'A')
+            return -3;
+        if(coords.charAt(1)>'3' || coords.charAt(1)<'1')
+            return -4;
+        
+        int row = coords.charAt(0) - 'A';
+        int col = coords.charAt(1) - '1';
+        
+        board[row][col]=player;
+        
+        return 0;
+    }
+    
     public char[][] getBoard()
     {
         return board;
