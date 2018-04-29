@@ -22,9 +22,10 @@ public class TicTacToe {
             restart=0;
             view.show(board.getBoard());
             
-            if(move==9)
+            if(move==9){
                 view.tie();
-        
+                break;
+            }
             System.out.println("\n Pick a place player "+player);
             error=board.playerMove(reader.read(), player);
             if(error<0){
@@ -36,6 +37,7 @@ public class TicTacToe {
             }
             
             if(board.checkWin()!='n'){
+                view.show(board.getBoard());
                 view.playerWin(player);
                 break;
             }
