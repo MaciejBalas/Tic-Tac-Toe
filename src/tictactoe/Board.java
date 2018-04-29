@@ -23,17 +23,17 @@ public class Board {
     public char checkWin(){
         // straight lines
         for(int i=0;i<board.length;i++){
-            if(board[i][0]==board[i][1] && board[i][1]==board[i][2])
+            if(board[i][0]==board[i][1] && board[i][1]==board[i][2] && board[i][0]!='.')
                 return board[i][0];
             else{
-                if(board[0][i]==board[1][i] && board[1][i]==board[2][i])
+                if(board[0][i]==board[1][i] && board[1][i]==board[2][i] && board[0][i]!='.')
                 return board[0][i];
             }
         }
         //skewed lines
-        if(board[1][1]==board[2][2] && board[0][0]==board[1][1])
+        if(board[1][1]==board[2][2] && board[0][0]==board[1][1] && board[1][1]!='.')
             return board[1][1];
-        if(board[1][1]==board[2][1] && board[0][2]==board[1][1])
+        if(board[1][1]==board[2][1] && board[0][2]==board[1][1] && board[1][1]!='.')
             return board[1][1];
         
         return 'n';
@@ -41,7 +41,7 @@ public class Board {
     
     
     public int playerMove(String coords,char player){
-        if(coords.length()>2)
+        if(coords.length()>2 || coords.length()<2)
             return -1;
 
         if(player!='x' && player!='o')
@@ -55,7 +55,10 @@ public class Board {
         int row = coords.charAt(0) - 'A';
         int col = coords.charAt(1) - '1';
         
-        board[row][col]=player;
+        if(board[row][col]=='.')
+            board[row][col]=player;
+        else
+            return -5;
         
         return 0;
     }
